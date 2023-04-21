@@ -1,0 +1,22 @@
+.App{
+    position: relative;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
+
+.Formulario{
+    margin-top: 150px;
+    margin-left: 400px;
+}
+
+
+.boton{
+    margin-top: 10px;
+}
+
+.carousel{
+    margin-top: 20px;
+    height:500px;
+}
+

@@ -1,0 +1,90 @@
+ng new frontendAdministrator --routing
+-Creamos componente registro
+ng g c components/registro
+-Creamos componente login
+ng g c components/login
+-Creamos cuentas
+ng g c components/accounts
+Creamos cuentas privadas
+ng g c components/private-accounts
+
+-Luego configuramos el archivo
+  app-routing.module.ts --> esta dentro de la carpeta components
+
+-En base a plantillas podemos usar la siguiente
+https://bootswatch.com/
+-npm install bootswatch
+ luego ir a buscarlos en el archivo angular.json
+    "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+-no olvidar que en el archivo app modulo se hace de la siguiente forma
+ imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+],
+- ahora debemos generar un servicio de la siguiente forma
+ng g s services/auth
+- ahora generaremos un servicio para tomar el token
+ng g s services/token-interceptor
+- este servicio es para poder obtener las cuentas(accounts)
+ng g s services/accounts
+
+-generamos tambien lo siguiente para poder usar las variables de entorno
+ng generate environments
+-no olvidar agregar app.module el modulo httpmodule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+  ],
+
+- Para el bloqueo de rutas vamos a usar un guard se genera de la siguiente forma
+ng g g auth
+- luego en el archivo auth.guard.ts se configura a la vez llamando un metodo de auth services
+- luego en app.module agregamos el guard en provider
+ providers: [AuthGuard],
+  bootstrap: [AppComponent]
+- luego en el servicio de intercepToken se realiza lo siguiente (es para llenar requestHeader y usarlo en cada peticion)
+token-interceptor.service.ts
+-luego de la configuracion de intercepToken tenemos que ir a app.module y realizar la siguiente configuracion
+ tenemos que configurar,
+ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+   providers: [AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ], //ya con esto podemos ver el header del usuario que necesitamos o headers con el respectivo token
+
+//aqui ajustamos el interceptoken para agregarcelo al header
+https://youtu.be/l_r9nRJ9YTk?t=3262
+
+- lo siguiente es  crear un logOut en el archivo auth.service.ts
+
+- luego tenemos que ir a nuestro app.component.html y configurar la logica de inicio de session
+  esto se hace con lo siguiente.
+   <ul class="navbar-nav ml-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
+          </li>
+        </ng-container>
+        <ng-template #loggedIn>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Logout</a>
+          </li>
+        </ng-template>
+      </ul>
+- Y para que esto funciono en el archivo app.component se debe de inicializar la clase Authservice
+  

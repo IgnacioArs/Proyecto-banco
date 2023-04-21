@@ -1,0 +1,24 @@
+npx expo install react-native-svg 
+npm i @react-navigation/bottom-tabs
+npx expo install @react-native-async-storage/async-storage
+npm install @react-navigation/native @react-navigation/native-stack
+expo install react-native-gesture-handler
+npx expo install react-native-screens react-native-safe-area-context
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native
+npm i --save @react-native-community/masked-view
+npm i --save react-native-elements
+npm i --save react-native-snackbar
+npm i --save react-native-vector-icons
+npx expo install expo-linear-gradient
+npm i expo-jwt
+npm i react-native-dotenv
+npm install axios
+npm i react-native-awesome-alerts
+npm install react-native-vector-icons
+
+https://reactnativeelements.com/docs/installation
+- bloquear rutas https://www.youtube.com/watch?v=QwsSDvL4gHc&ab_channel=DarwinTech
+- realizar react-navigation stack https://www.youtube.com/watch?v=_K9f-OZPPVA&ab_channel=BetoMoedano
+- iconos https://icons.expo.fyi/
+- como actualizar una app https://stackoverflow.com/questions/37489946/programmatically-restart-a-react-native-app

@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-4 mt-2" *ngFor="let account of accounts">
+        <div class="card">
+            <div class="card-body">
+                <h3>Id:{{account.id}}</h3>
+                <p>Code Country:{{account.codeCountry}}</p>
+                <p>Code Region:{{account.codeRegion}}</p>
+                <p>Code City:{{account.codeCity}}</p>
+                <p>Code County:{{account.codeCounty}}</p>
+                <p>Code postal:{{account.postalCode}}</p>
+                
+            </div>
+            <div class="card-footer">
+                <p>Description: {{account.description}}</p>
+                <p>Priority: {{account.priority}}</p>
+            </div>
+
+                <button type="button" class="btn btn-danger" (click)="params(account.id)">Edit</button>  
+    </div>
+</div>
+<ng-container *ngIf="formState; else noData">
+    <div class="div mt-2">
+        <div class="row">
+            <div class="col-md-4">
+             
+                    <form>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.codeCity" name="codeCity" class="form-control" placeholder="codeCity" required autofocus>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.codeCountry" name="codeCountry" class="form-control" placeholder="codeCountry" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.codeCounty" name="codeCounty" class="form-control" placeholder="codeCounty" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.codeRegion" name="codeRegion" class="form-control" placeholder="codeRegion" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.description" name="description" class="form-control" placeholder="description" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="number"  [(ngModel)]="idEdit"   name="id" (ngModelChange)="onSearchChange($event)"  class="form-control"   disabled required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" [(ngModel)]="updateAccount.postalCode" name="postalCode" class="form-control" placeholder="postalCode" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="number" [(ngModel)]="updateAccount.priority" name="priority" class="form-control" placeholder="priority" required >
+                        </div>
+                        <div class="form-group mt-3">
+                            <button class="btn btn-success btn-block" (click)="editAccount()">
+                                Editar
+                            </button>
+                        </div>
+                    </form>
+                
+        </div>
+    </div>
+</div>
+</ng-container>
+<ng-template #noData>
+<li class="nav-item">
+<a class="nav-link text-white" style="cursor: pointer;"  routerLinkActive="active">No data</a>
+</li>
+</ng-template> 
