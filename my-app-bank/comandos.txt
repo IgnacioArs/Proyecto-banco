@@ -22,3 +22,6 @@ https://reactnativeelements.com/docs/installation
 - realizar react-navigation stack https://www.youtube.com/watch?v=_K9f-OZPPVA&ab_channel=BetoMoedano
 - iconos https://icons.expo.fyi/
 - como actualizar una app https://stackoverflow.com/questions/37489946/programmatically-restart-a-react-native-app
+- (drawer creacion)https://www.youtube.com/watch?v=SGEL3F-VFOE&ab_channel=MissCoding
+    npm install @react-navigation/drawer
+    npm install react-native-gesture-handler react-native-reanimated

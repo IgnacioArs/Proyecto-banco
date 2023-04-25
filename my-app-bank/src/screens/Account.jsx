@@ -15,6 +15,7 @@ const Account = () => {
 const [refrescar,setRefrescar] = useState(false);
 const [auth,setAuth] = useState();
 const [account,setAccount] = useState();
+const [id,setId] = useState();
 
   const getData = async () => {
     try {
@@ -38,6 +39,8 @@ const [account,setAccount] = useState();
 
 const cargar = React.useCallback(()=> {
   setRefrescar(true)
+  var userId = JSON.stringify(auth.split(',')[0].slice(19,-1));
+  setId(userId.replace(/['"]+/g, ''));
   setAccount(false)
   setRefrescar(false)
 })
@@ -55,14 +58,14 @@ const Account = async () => {
      token:token,
      auth:auth
    }
-    const response = await axios.post(`${API}`,nuevoToken,config);
+    const response = await axios.post("http://192.168.248.35:3003/api/private-account-profile",nuevoToken,config);
     if(response){
      setAccount(response.data.data)
      console.log("respuesta ===>",response.data.data,"ACOUNT",account);
     }
   
 }
-  
+
   useEffect(() => {
     getData();
   },[auth])
@@ -84,7 +87,7 @@ const Account = async () => {
         
         </Text>
         <Card style={{ marginBottom: 10}}>
-        {account? (<View><Text h4 style={{color:'red',fontWeight:'bold'}}>INFORMACION DE LA CUENTA</Text>
+        {account? (<View id={id}><Text h4 style={{color:'#00bb2d',fontWeight:'bold',alignSelf:'center'}}>INFORMACION DE LA CUENTA</Text>
           <Text >Id:<Text style={{color:'black',fontWeight:'bold'}}> {`${account.id}`}</Text></Text>
           <Text >CodeCity:<Text style={{color:'black',fontWeight:'bold'}}> {`${account.codeCity}`}</Text></Text>
           <Text >CodeCountry: <Text style={{color:'black',fontWeight:'bold'}}> {`${account.codeCountry}`}</Text></Text>
@@ -96,7 +99,7 @@ const Account = async () => {
             Descripcion:
             <Text style={{color:'black',fontWeight:'bold'}}>  {`${account.description}`}</Text>
            
-          </Text></View>):(<Text style={{color:'red'}}>(Click!) en obtener cuenta.</Text>)}
+          </Text></View>):(<Text style={{color:'red',alignSelf:'center'}}>(Click!) PARA OBTENER LA CUENTA.</Text>)}
         </Card>
         <View>
           {!account? (<View style={{alignItems:'center'}}><Text>
@@ -110,15 +113,16 @@ const Account = async () => {
             />
           }
           buttonStyle={{
-            borderRadius: 0,
+            borderRadius: 15,
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 0,
-            marginTop:10
+            marginTop:10,
+            backgroundColor:'gray'
           }}
           title="Obtener cuenta"
           onPress={() => Account()}
-        /></Text></View>):(<View ><Text style={{color:'green',alignSelf:'center',marginTop:25}}>Activa!</Text></View>)}
+        /></Text></View>):(<View ><Text style={{color:'green',alignSelf:'center',marginTop:25}}>activo</Text></View>)}
         </View>
       </Card>
     </View>

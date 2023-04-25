@@ -69,7 +69,7 @@ const getData = async () => {
             password:password
           }
           console.log(`${bff_users_session}`)
-          const result = await axios.post(`${bff_users_session}`,user)
+          const result = await axios.post("http://192.168.248.35:3003/api/userSession",user)
           console.log("Viendo la alerta",result.data.message.status);
           if(result.data.message.status=== 202) {
               /* console.log(result.data.data); */

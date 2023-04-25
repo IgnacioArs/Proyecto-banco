@@ -10,6 +10,7 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 //screen necesarias
 import Others from './src/screens/Others'
@@ -43,7 +44,8 @@ function MyTabs(){
     <Fontisto name="wallet" size={24} color="#00d4ff" />
   ),}}/>
 
-<Tab.Screen name="Other" component={Others} options={{tabBarLabel:'Otros',
+
+ <Tab.Screen name="Other" component={Others} options={{tabBarLabel:'Otros',
    tabBarIcon:({color,size}) =>(
     <FontAwesome name="book" size={24} color="#00d4ff" />
   ),}}/>
@@ -56,6 +58,18 @@ function MyTabs(){
 
 export default function Navigation(){
     return (
-        <MyTabs/>
+        <MyDrawer/>
     )
+}
+
+const Drawer = createDrawerNavigator();
+function MyDrawer() {
+  return (
+    <Drawer.Navigator >
+    <Drawer.Screen name="Inicio" component={MyTabs}  options={{tabBarLabel:'Inicio',headerShadowVisible:false,headerShown:false,
+    drawerIcon:({color,size}) =>(
+      <FontAwesome name="home" size={24} color="#00d4ff" />
+    ),}}/>
+    </Drawer.Navigator>
+  );
 }

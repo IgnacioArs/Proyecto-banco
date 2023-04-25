@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import RoutesBloqued from './src/components/bloqueade/RoutesBloqued';
+import 'react-native-gesture-handler';
 
 const stack = createNativeStackNavigator();
 
@@ -41,3 +42,5 @@ getData();
 
   );
 }
+
+
